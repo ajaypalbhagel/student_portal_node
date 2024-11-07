@@ -2,5 +2,22 @@
   "dependencies": {
     "express": "^4.21.1",
     "mongoose": "^8.8.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "student_portal_node",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaypalbhagel/student_portal_node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajaypalbhagel/student_portal_node/issues"
+  },
+  "homepage": "https://github.com/ajaypalbhagel/student_portal_node#readme",
+  "description": ""
 }

@@ -14,9 +14,9 @@ class StudentService{
     }
  }
 
- static async getStudentList(req){
+ static async getStudentList(query = {}, projection = {}){
     try{
-        let response = await Student.find();
+        let response = await Student.find(query,projection);
         console.log(response)
         if(response){
             return response
@@ -25,6 +25,19 @@ class StudentService{
         throw new Error(err);
     }
  }
+
+static async getStudentById(studentId){
+    try{
+        let query = {_id:studentId}
+        let response = await Student.findById(query)
+        console.log(response)
+        // if(response){
+            return response
+        // }
+    }catch(err){
+        throw new Error (err);
+    }
+}
 
 }
 

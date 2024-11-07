@@ -4,6 +4,7 @@ const app = express();
 const studentRoutes = require('./src/api/routes/student');
 
 app.use(express.json()); // Middleware to parse JSON data
+// console.log(app.use(express.json()))
 
 /** mongoose setup */
 const connectionStr = "mongodb://localhost:27017/studentPortal"; 
@@ -13,7 +14,7 @@ const options = {
     useUnifiedTopology: true, 
 }; 
 
-mongoose.connect(connectionStr).then(() => {
+mongoose.connect(connectionStr,options).then(() => {
     console.log("Connected to db")
 }).catch((error) => {
     console.log( `⁠ MongoDB connection error. Please make sure MongoDB is running. ${error} ⁠` );
@@ -21,6 +22,7 @@ mongoose.connect(connectionStr).then(() => {
 /** end mongoose setup */
 // Use the student routes
 app.use('/students', studentRoutes);
+// console.log('/students',studentRoutes)
 
 const PORT = 3000;
 app.listen(PORT, () => {

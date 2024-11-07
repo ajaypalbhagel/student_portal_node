@@ -6,14 +6,23 @@ const StudentService = require('../service/student')
 
 // Create a new student
 router.post('/', async (req, res) => {
+  console.log("check post")
   const response = await StudentService.addStudent(req.body);
-  res.status(201).json({});
+  res.status(200).json({});
 });
 
-// Create a new student
+// get student
 router.get('/', async (req, res) => {
-  const response = await StudentService.getStudentList(req.body);
-  res.status(201).json(response);
+  console.log("check here")
+  const response = await StudentService.getStudentList({_id:"672b9193630ac2eade567378"},{});
+  res.status(200).json(response);
 });
+
+router.get('/:id',async(req, res) => {
+  console.log("check id api")
+  const studentId= req.params.id
+  const response = await StudentService.getStudentById(studentId);
+  res.status(200).json(response);
+})
 
 module.exports = router;
