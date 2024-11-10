@@ -14,10 +14,9 @@ class StudentService{
     }
  }
 
- static async getStudentList(query = {}, projection = {}){
+ static async getStudentList(query = {}, projection = {},skip = 0, limit = 10){
     try{
-        let response = await Student.find(query,projection);
-        console.log(response)
+        let response = await Student.find(query,projection).skip(skip).limit(limit)
         if(response){
             return response
         }
@@ -26,14 +25,34 @@ class StudentService{
     }
  }
 
+ static async getCount(query = {}){
+    try{
+        // let response = await Student.find({query}).countDocuments({"firstName":1},{});
+        let response = await Student.countDocuments(query);
+        // console.log(response)
+        if(response){
+            return response
+        }
+    }catch(err){
+        throw new Error(err);
+    }
+ }
+
+
+
 static async getStudentById(studentId){
     try{
-        let query = {_id:studentId}
-        let response = await Student.findById(query)
-        console.log(response)
-        // if(response){
-            return response
-        // }
+        let response = await Student.findById(studentId)
+        return response
+    }catch(err){
+        throw new Error (err);
+    }
+}
+
+static async updateItems(query ,updateData){
+    try{
+        let response = await Student.updateMany(query,updateData)
+        return response
     }catch(err){
         throw new Error (err);
     }
